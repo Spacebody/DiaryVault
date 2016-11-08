@@ -11,7 +11,7 @@ def main():
         ('New File','Load File','New KeyPair','Exit'),
         (editor.new_file,
          editor.load_file,
-         cryptoRSA.generate,
+         editor.new_rsa_keypair,
          exit))
     while True:
         menu.display()

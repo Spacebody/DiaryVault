@@ -20,16 +20,22 @@ class Editor(object):
         self._config.set("basic", "version", config.version)
         self._config.set("basic", "editor", config.editor)
         self._config.set("basic", "init_msg", config.init_message)
-        length, driver_name = RSA.generate()
-        self._config.add_section("RSA")
-        self._config.set("RSA", "length", str(length))
-        self._config.set("basic", "driver_name", driver_name)
-        with open(config.name, "w") as config_file:
-            self._config.write(config_file)
+        self.new_rsa_keypair()
 
     def _check_config(self):
         if not self._config.read(".myVault"):
             self._init_config()
+
+    def new_rsa_keypair(self):
+        length, driver_name = RSA.generate()
+        try:
+            self._config.add_section("RSA")
+        except :
+            pass
+        self._config.set("RSA", "length", str(length))
+        self._config.set("basic", "driver_name", driver_name)
+        with open(config.name, "w") as config_file:
+            self._config.write(config_file)
 
     def _new_msg(self):
         with tempfile.NamedTemporaryFile(mode='w+') as temp:
