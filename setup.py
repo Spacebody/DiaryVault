@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 from setuptools import setup
+
 from myVault.config import version
 
-
 setup(
-    name='DiaryVault',
+    name='myVault',
     version=version,
     author='lightsing',
     url='https://github.com/lightsing/DiaryVault/',
